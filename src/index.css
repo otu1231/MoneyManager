@@ -8,8 +8,8 @@ body {
   margin: 0;
   font-family: system-ui, sans-serif;
   line-height: 1.4;
-  color: #111;
-  background: #f6f6f6;
+  color: #f6f6f6;
+  background: #333;
 }
 
 #root {
@@ -28,4 +28,30 @@ header h1 {
 header p {
   margin: 0;
   color: #555;
+}
+
+.type-bar, .period-bar {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.type-bar button, .period-bar button {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  background: #555;
+  color: #f6f6f6;
+  font-size: 1rem;
+}
+
+.period-bar {
+  gap: 0.1rem;
+}
+
+.period-bar button{
+  font-size: 0.9rem;
+  margin: 0.05rem;
 }
