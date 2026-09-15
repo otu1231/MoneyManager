@@ -33,6 +33,18 @@ const MOCK_EXAMPLES = [
     title: 'Czynsz',
     amount: 1200,
     date: todayStr,
+  },
+  {
+    id: 5,
+    title: 'Czynsz',
+    amount: 1100,
+    date: '2026-09-14',
+  },
+  {
+    id: 6,
+    title: 'Czynsz',
+    amount: 1000,
+    date: '2026-09-13',
   }
 ];
 
@@ -53,14 +65,14 @@ function filterByPeriod(items, period) {
     }
     // TODO
     if (period == 'this-week') {
-      const to = new Date(today.getDay())
-      const from = new Date(today.getDay())
-      for (let i = 0; i < 7; i++) {
+      const to = new Date(today)
+      const from = new Date(today)
+      for (let i = 1; i < 8; i++) {
         if(from.getDay() == 1) { // jesli poniedzialek
           break
         }
         else {
-          from.setDate(from.getDate() - 1)
+          from.setDate(from.getDate() - 1) // konwersja na liczbe a potem odejmowanie dnia
         }
       }
       return d >= from && d <= to
@@ -74,7 +86,7 @@ function filterByPeriod(items, period) {
 }
 function App() {
   const [type, setType] = useState('expenses') // expenses | income
-  const [period, setPeriod] = useState('month') // day | week | month | year
+  const [period, setPeriod] = useState('month') // day | week | this week| month | year
 
   const visible = filterByPeriod(MOCK_EXAMPLES, period)
   const saldo = visible.reduce((sum, e) => sum + e.amount, 0)
@@ -107,6 +119,7 @@ function App() {
           {[
             ['today', 'Dziś'],
             ['week', 'Tydzień'],
+            ['this-week', 'Ten tydzień'],
             ['month', 'Miesiąc'],
             ['year', 'Rok'],
             ['all', 'Całość'],
